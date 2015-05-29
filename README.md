@@ -10,6 +10,7 @@ Base project template for ES6 modules including:
 ## Installation
 
 Ensure you have Node and NPM installed using the instructions at:
+
 https://nodejs.org/download/
 
 Then run the following command to install the dependancies:
