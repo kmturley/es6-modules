@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>ES6 Modules</title>
+    <meta name="description" content="" />
+    <meta name=viewport content="width=device-width,initial-scale=1" />
+    <!-- build:css -->
+    <link rel="stylesheet" href="modules/app/app.css" />
+    <link rel="stylesheet" href="modules/list/list.css" />
+    <!-- endbuild -->
+</head>
+<body class="app">
+    <h1>ES6 Modules</h1>
+    <p>Base project template for ES6 modules including:</p>
+    <ul>
+        <li>Server with live reload of static files</li>
+        <li>Compile and run ES6 scripts in your browser on-the-fly</li>
+        <li>Automated build tasks to create ES5 versions of js for production environments</li>
+        <li>Combine static files and minify ready for production</li>
+    </ul>
+    <p><a href="../src/">Dev</a> / <a href="../dist/">Production</a></p>
+    <div class="list" id="list"></div>
+    <!-- build:js -->
+    <script src="../node_modules/babel/node_modules/babel-core/browser.js"></script>
+    <script src="modules/app/app.js" type="text/babel"></script>
+    <script src="modules/list/list.js" type="text/babel"></script>
+    <!-- endbuild -->
+</body>
+</html>

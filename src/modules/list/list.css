@@ -1,0 +1,10 @@
+/**
+ * List
+ * @class list
+ */
+
+.list {
+    background-color: #fafafa;
+    border: 1px solid #eee;
+    padding: 20px;
+}

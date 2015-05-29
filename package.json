@@ -1,0 +1,30 @@
+{
+  "name": "es6-modules",
+  "version": "1.0.0",
+  "description": "Example showing how to use ES6 Modules today",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "es6-modules"
+  },
+  "keywords": [
+    "es6",
+    "modules",
+    "babel"
+  ],
+  "author": "kmturley",
+  "license": "ISC",
+  "devDependencies": {
+    "babel": "^5.4.7",
+    "gulp": "^3.8.11",
+    "gulp-babel": "^5.1.0",
+    "gulp-concat": "^2.5.2",
+    "gulp-connect": "^2.2.0",
+    "gulp-html-replace": "^1.4.5",
+    "gulp-minify-css": "^1.1.1",
+    "gulp-uglify": "^1.2.0"
+  }
+}
