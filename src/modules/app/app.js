@@ -1,12 +1,7 @@
-/**
- * @module App
- * @summary Example app
- */
+import { list } from "../list/list";
 
-/*globals window, document */
-
-var app = (name) => {
+var getTime = (name) => {
     return new Date().toLocaleTimeString() + ' - ';
 };
 
-document.getElementById('list').innerHTML += app();
+document.getElementById('list').innerHTML += getTime() + list('Ted');
