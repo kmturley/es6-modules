@@ -6,11 +6,13 @@
 /*globals require, console*/
 
 var gulp = require('gulp'),
-    babel = require('gulp-babel'),
+    babelify = require('babelify'),
+    browserify = require('browserify'),
     concat = require('gulp-concat'),
     connect = require('gulp-connect'),
     htmlreplace = require('gulp-html-replace'),
     minifyCSS = require('gulp-minify-css'),
+    source = require('vinyl-source-stream'),
     uglify = require('gulp-uglify');
 
 // watch css files for changes and reload page
@@ -43,14 +45,11 @@ gulp.task('dist', function () {
             console.error('html error: ' + error);
         });
     
-    gulp.src('src/**/*.js')
-        .pipe(babel())
-        .pipe(concat('all.min.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest('dist/modules'))
-        .on('error', function (error) {
-            console.error('js error: ' + error);
-        });
+    browserify({entries: 'src/app.js', extensions: ['.js'], debug: true})
+        .transform(babelify, { presets: ['es2015'] })
+        .bundle()
+        .pipe(source('all.min.js'))
+        .pipe(gulp.dest('dist/modules'));
     
     gulp.src('src/**/*.css')
         .pipe(concat('all.min.css'))

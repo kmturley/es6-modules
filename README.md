@@ -1,4 +1,4 @@
-# ES6 Modules
+# ES6 Modules (Angular)
 
 Base project template for ES6 modules including:
 
