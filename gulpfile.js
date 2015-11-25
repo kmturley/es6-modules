@@ -5,16 +5,40 @@
 
 /*globals require, console*/
 
-var gulp = require('gulp'),
-    babel = require('gulp-babel'),
-    concat = require('gulp-concat'),
+var autoprefixer = require('gulp-autoprefixer'),
+    babelify = require('babelify'),
+    browserify = require('browserify'),
+    cmq = require('gulp-combine-media-queries'),
     connect = require('gulp-connect'),
+    gulp = require('gulp'),
     htmlreplace = require('gulp-html-replace'),
     minifyCSS = require('gulp-minify-css'),
-    uglify = require('gulp-uglify');
+    rename = require('gulp-rename'),
+    sass = require('gulp-sass'),
+    uglify = require('gulp-uglify'),
+    vinylBuffer = require('vinyl-buffer'),
+    vinylSourceStream = require('vinyl-source-stream');
+
+/**
+ * Gulp tasks
+ * @file gulpfile
+ */
+
+/*globals require, console*/
 
 // watch css files for changes and reload page
 gulp.task('css', function () {
+
+    gulp.src('src/modules/app/app.scss')
+        .pipe(sass({errLogToConsole: true}))
+        .pipe(cmq({log: true}))
+        .pipe(autoprefixer({browsers: ['last 2 versions']}))
+        .pipe(rename('all.css'))
+        .pipe(gulp.dest('src/modules'))
+        .on('error', function (error) {
+            console.error('css error: ' + error);
+        });
+    
     gulp.src('src/**/*.css')
         .pipe(connect.reload());
 });
@@ -27,12 +51,23 @@ gulp.task('html', function () {
 
 // watch js files for changes and reload page
 gulp.task('js', function () {
+
+    browserify({entries: 'src/modules/app/app.js', extensions: ['.js'], debug: true})
+        .transform(babelify, { presets: ['es2015'] }).bundle()
+        .pipe(vinylSourceStream('all.js'))
+        .pipe(gulp.dest('src/modules'))
+        .on('error', function (error) {
+            console.error('js error: ' + error);
+        });
+    
     gulp.src('src/**/*.js')
         .pipe(connect.reload());
 });
 
-// compile production versions of assets
+// compile production versions of static files
 gulp.task('dist', function () {
+    
+    // html
     gulp.src('src/**/*.html')
         .pipe(htmlreplace({
             'css': 'modules/all.min.css',
@@ -43,17 +78,23 @@ gulp.task('dist', function () {
             console.error('html error: ' + error);
         });
     
-    gulp.src('src/**/*.js')
-        .pipe(babel())
-        .pipe(concat('all.min.js'))
+    // javascript
+    browserify({entries: 'src/modules/app/app.js', extensions: ['.js'], debug: true})
+        .transform(babelify, { presets: ['es2015'] }).bundle()
+        .pipe(vinylSourceStream('all.min.js'))
+        .pipe(vinylBuffer())
         .pipe(uglify())
         .pipe(gulp.dest('dist/modules'))
         .on('error', function (error) {
             console.error('js error: ' + error);
         });
     
-    gulp.src('src/**/*.css')
-        .pipe(concat('all.min.css'))
+    // css
+    gulp.src('src/modules/app/app.scss')
+        .pipe(sass({errLogToConsole: true}))
+        .pipe(cmq({log: true}))
+        .pipe(autoprefixer({browsers: ['last 2 versions']}))
+        .pipe(rename('all.min.css'))
         .pipe(minifyCSS())
         .pipe(gulp.dest('dist/modules'))
         .on('error', function (error) {
@@ -68,10 +109,10 @@ gulp.task('connect', function () {
 
 // start watch tasks
 gulp.task('watch', function () {
-    gulp.watch(['src/**/*.css'], ['css']);
     gulp.watch(['src/**/*.html'], ['html']);
+    gulp.watch(['src/**/*.scss'], ['css']);
     gulp.watch(['src/**/*.js'], ['js']);
 });
 
 // default task
-gulp.task('default', ['connect', 'watch']);
+gulp.task('default', ['connect', 'html', 'css', 'js', 'watch']);

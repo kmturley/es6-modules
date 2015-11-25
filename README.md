@@ -3,8 +3,8 @@
 Base project template for ES6 modules including:
 
 * Server with live reload of static files
-* Compile and run ES6 scripts in your browser on-the-fly
-* Automated build tasks to create ES5 versions of js for production environments
+* Compile and run ES6 JavaScript and SASS CSS for development environments
+* Build tasks to create minified ES5 versions for production environments
 * Combine static files and minify ready for production
 
 ## Installation
@@ -19,14 +19,20 @@ Then run the following command to install the dependancies:
     
 The following packages will be installed:
 
-* babel - for running ES6 modules in the browser
-* gulp - task runner
-* gulp-babel - version for build tasks
-* gulp-concat - combine static files together
-* gulp-connect - live reload server
-* gulp-html-replace - create asset bundles for production
-* gulp-minify-css - minify css code
-* gulp-uglify - minify js code
+* babel-preset-es2015 - preset for babel to understand the ES6 spec
+* babelify - tranform preset for browserify to understand babel
+* browserify - Compile ES6 modules with a module loader to support import statements
+* gulp - Task runner
+* gulp-autoprefixer - auto prefix css with cross-browser properties
+* gulp-combine-media-queries - combine duplicate css where possible to reduce size
+* gulp-connect - local server to view site
+* gulp-html-replace - replace development html with production html
+* gulp-minify-css - minify css to make it smaller
+* gulp-rename - rename file
+* gulp-sass - convert scss to css
+* gulp-uglify - minify javascript
+* vinyl-buffer - buffer stream into a virtual file
+* vinyl-source-stream - transfer stream into file
 
 ## Usage
 
