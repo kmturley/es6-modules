@@ -1,0 +1,68 @@
+/**
+ * App
+ * @class app
+ */
+
+/**
+ * List
+ * @class list
+ */
+
+.list {
+	background-color: #fafafa;
+	border: 1px solid #eee;
+	padding: 20px;
+}
+
+.app {
+	font-family: sans-serif;
+	font-size: 16px;
+	line-height: 1.5em;
+	margin: 0;
+	padding: 20px;
+}
+
+.app h1,
+.app h2,
+.app h3,
+.app h4,
+.app h5,
+.app h6 {
+	font-weight: normal;
+	line-height: 1em;
+}
+
+.app h1,
+.app h2,
+.app h3,
+.app h4,
+.app h5,
+.app h6,
+.app p {
+	margin: 0 0 1rem 0;
+}
+
+.app h1 {
+	font-size: 3.5em;
+}
+
+.app h2 {
+	font-size: 3em;
+}
+
+.app h3 {
+	font-size: 2.5em;
+}
+
+.app h4 {
+	font-size: 2em;
+}
+
+.app h5 {
+	font-size: 1.5em;
+}
+
+.app h6 {
+	font-size: 1em;
+}
+
