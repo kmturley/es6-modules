@@ -11,18 +11,21 @@ var autoprefixer = require('gulp-autoprefixer'),
     gulp = require('gulp'),
     gulp_jspm = require('gulp-jspm'),
     htmlreplace = require('gulp-html-replace'),
+    imagemin = require('gulp-imagemin'),
     minifyCSS = require('gulp-minify-css'),
+    minifyHtml = require('gulp-minify-html'),
+    pngquant = require('imagemin-pngquant'),
     rename = require('gulp-rename'),
     sass = require('gulp-sass'),
     uglify = require('gulp-uglify');
 
-// start a server
+// server
 gulp.task('connect', function () {
     'use strict';
     connect.server({livereload: true});
 });
 
-// watch scss files for changes, compile to css and reload page
+// css
 gulp.task('css', function () {
     'use strict';
 
@@ -40,29 +43,34 @@ gulp.task('css', function () {
         .pipe(connect.reload());
 });
 
-// watch html files for changes and reload page
+// html
 gulp.task('html', function () {
     'use strict';
-    
     gulp.src('src/**/*.html')
         .pipe(connect.reload());
 });
 
-// watch javascript files for changes and reload page
+// images
+gulp.task('img', function () {
+    'use strict';
+    gulp.src('src/**/*.{jpg,png}')
+        .pipe(connect.reload());
+});
+
+// javascript
 gulp.task('js', function () {
     'use strict';
-    
     gulp.src('src/**/*.js')
         .pipe(connect.reload());
 });
 
-// compile production assets to build folder
+// build
 gulp.task('build', function () {
     'use strict';
     
     gulp.src('src/modules/all.css')
         .pipe(minifyCSS())
-        .pipe(rename('all.min.css'))
+        .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest('build/modules'))
         .on('error', function (error) {
             console.error('css error: ' + error);
@@ -73,9 +81,21 @@ gulp.task('build', function () {
             'css': 'modules/all.min.css',
             'js': 'modules/all.min.js'
         }))
+        .pipe(minifyHtml())
         .pipe(gulp.dest('build'))
         .on('error', function (error) {
             console.error('html error: ' + error);
+        });
+    
+    gulp.src('src/**/*.{jpg,png}')
+        .pipe(imagemin({
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}],
+            use: [pngquant()]
+        }))
+        .pipe(gulp.dest('build'))
+        .on('error', function (error) {
+            console.error('img error: ' + error);
         });
     
     gulp.src('src/modules/app/app.js')
@@ -88,13 +108,14 @@ gulp.task('build', function () {
         });
 });
 
-// start watch tasks
+// watch
 gulp.task('watch', function () {
     'use strict';
     gulp.watch(['src/**/*.html'], ['html']);
+    gulp.watch(['src/**/*.{jpg,png}'], ['img']);
     gulp.watch(['src/**/*.scss'], ['css']);
     gulp.watch(['src/**/*.js'], ['js']);
 });
 
-// default task
-gulp.task('default', ['connect', 'css', 'html', 'js', 'watch']);
+// default
+gulp.task('default', ['connect', 'css', 'html', 'img', 'js', 'watch']);
