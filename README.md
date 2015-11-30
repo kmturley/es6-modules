@@ -18,22 +18,31 @@ Then run the following command to install the dependancies:
     jspm install
     npm install
     
-The following packages will be installed:
+Base libraries used:
 
 * gulp - Task runner
-* gulp-autoprefixer - Adds browser prefixes to css automatically
-* gulp-esdoc - Auto-generates js documentation
-* gulp-html-replace - Replaces production html code with build code
-* gulp-imagemin - Minifies images to create smaller files
-* gulp-jspm - ES6 compiler
-* gulp-combine-media-queries - Combines css media queries to optimise code size
 * gulp-connect - Runs the local server
+* gulp-rename - Renames a file
+
+Compiling libraries used:
+
+* gulp-autoprefixer - Adds browser prefixes to css automatically
+* gulp-html-replace - Updates html development paths with production paths
+* gulp-jspm - ES6 compiler
+* gulp-sass - Compiles scss into css
+
+Optimisation libraries used:
+
+* gulp-imagemin - Minifies images to create smaller files
+* gulp-combine-media-queries - Combines css media queries to optimise code size
 * gulp-minify-css - Minifies the css into a smaller file
 * gulp-minify-html - Minifies html code into a smaller file
-* gulp-rename - Renames a file
-* gulp-sass - Compiles scss into css
 * gulp-uglify - Minifies javascript
 * imagemin-pngquant - Plugin for imagemin to minify png images
+
+Documentation libraries used:
+
+* gulp-esdoc - Auto-generates js documentation
 * sassdoc - Auto-generates css documentation
 
 ## Usage
