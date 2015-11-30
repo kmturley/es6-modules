@@ -11,7 +11,7 @@ Base project template for ES6 modules including:
 
 Ensure you have Node and NPM installed using the instructions at:
 
-https://nodejs.org/download/
+[https://nodejs.org/download/](https://nodejs.org/download/)
 
 Then run the following command to install the dependancies:
 
@@ -20,9 +20,9 @@ Then run the following command to install the dependancies:
     
 Base libraries used:
 
-* gulp - Task runner
-* gulp-connect - Runs the local server
-* gulp-rename - Renames a file
+* [gulp](https://github.com/gulpjs/gulp) - Task runner
+* [gulp-connect](https://github.com/AveVlad/gulp-connect) - Runs the local server
+* [gulp](https://github.com/hparra/gulp-rename) - Renames a file
 
 Compiling libraries used:
 
