@@ -22,7 +22,7 @@ Base libraries used:
 
 * [gulp](https://github.com/gulpjs/gulp) - Task runner
 * [gulp-connect](https://github.com/AveVlad/gulp-connect) - Runs the local server
-* [gulp](https://github.com/hparra/gulp-rename) - Renames a file
+* [gulp-rename](https://github.com/hparra/gulp-rename) - Renames a file
 
 Compiling libraries used:
 
