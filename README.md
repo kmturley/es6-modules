@@ -15,24 +15,21 @@ https://nodejs.org/download/
 
 Then run the following command to install the dependancies:
 
+    jspm install
     npm install
     
 The following packages will be installed:
 
-* babel-preset-es2015 - preset for babel to understand the ES6 spec
-* babelify - tranform preset for browserify to understand babel
-* browserify - Compile ES6 modules with a module loader to support import statements
-* gulp - Task runner
-* gulp-autoprefixer - auto prefix css with cross-browser properties
-* gulp-combine-media-queries - combine duplicate css where possible to reduce size
-* gulp-connect - local server to view site
-* gulp-html-replace - replace development html with production html
-* gulp-minify-css - minify css to make it smaller
-* gulp-rename - rename file
-* gulp-sass - convert scss to css
-* gulp-uglify - minify javascript
-* vinyl-buffer - buffer stream into a virtual file
-* vinyl-source-stream - transfer stream into file
+gulp - Task runner
+gulp-autoprefixer - Adds browser prefixes to css automatically
+gulp-html-replace - Replaces production html code with build code
+gulp-jspm - ES6 compiler
+gulp-combine-media-queries - Combines css media queries to optimise code size
+gulp-connect - Runs the local server
+gulp-minify-css - Minifies the css into a smaller file
+gulp-rename - Renames a file
+gulp-sass - Compiles scss into css
+gulp-uglify - Minifies javascript
 
 ## Usage
 
@@ -40,6 +37,6 @@ To run the server type the command below and then point your browser to http://l
 
     gulp
     
-To build the ES5 versions run the command below and navigate to http://localhost:8080/dist/
+To build the ES5 versions run the command below and navigate to http://localhost:8080/build/
 
-    gulp dist
+    gulp build

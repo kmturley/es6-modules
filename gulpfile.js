@@ -3,31 +3,28 @@
  * @file gulpfile
  */
 
-/*globals require, console*/
+/*globals require*/
 
 var autoprefixer = require('gulp-autoprefixer'),
-    babelify = require('babelify'),
-    browserify = require('browserify'),
     cmq = require('gulp-combine-media-queries'),
     connect = require('gulp-connect'),
     gulp = require('gulp'),
+    gulp_jspm = require('gulp-jspm'),
     htmlreplace = require('gulp-html-replace'),
     minifyCSS = require('gulp-minify-css'),
     rename = require('gulp-rename'),
     sass = require('gulp-sass'),
-    uglify = require('gulp-uglify'),
-    vinylBuffer = require('vinyl-buffer'),
-    vinylSourceStream = require('vinyl-source-stream');
+    uglify = require('gulp-uglify');
 
-/**
- * Gulp tasks
- * @file gulpfile
- */
+// start a server
+gulp.task('connect', function () {
+    'use strict';
+    connect.server({livereload: true});
+});
 
-/*globals require, console*/
-
-// watch css files for changes and reload page
+// watch scss files for changes, compile to css and reload page
 gulp.task('css', function () {
+    'use strict';
 
     gulp.src('src/modules/app/app.scss')
         .pipe(sass({errLogToConsole: true}))
@@ -45,74 +42,53 @@ gulp.task('css', function () {
 
 // watch html files for changes and reload page
 gulp.task('html', function () {
+    'use strict';
+    
     gulp.src('src/**/*.html')
         .pipe(connect.reload());
 });
 
-// watch js files for changes and reload page
+// watch javascript files for changes and reload page
 gulp.task('js', function () {
-
-    browserify({entries: 'src/modules/app/app.js', extensions: ['.js'], debug: true})
-        .transform(babelify, { presets: ['es2015'] }).bundle()
-        .pipe(vinylSourceStream('all.js'))
-        .pipe(gulp.dest('src/modules'))
-        .on('error', function (error) {
-            console.error('js error: ' + error);
-        });
+    'use strict';
     
     gulp.src('src/**/*.js')
         .pipe(connect.reload());
 });
 
-// compile production versions of static files
-gulp.task('dist', function () {
+// compile production assets to build folder
+gulp.task('build', function () {
+    'use strict';
     
-    // html
+    gulp.src('src/modules/all.css')
+        .pipe(minifyCSS())
+        .pipe(rename('all.min.css'))
+        .pipe(gulp.dest('build/modules'));
+    
     gulp.src('src/**/*.html')
         .pipe(htmlreplace({
             'css': 'modules/all.min.css',
             'js': 'modules/all.min.js'
         }))
-        .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest('build'))
         .on('error', function (error) {
             console.error('html error: ' + error);
         });
     
-    // javascript
-    browserify({entries: 'src/modules/app/app.js', extensions: ['.js'], debug: true})
-        .transform(babelify, { presets: ['es2015'] }).bundle()
-        .pipe(vinylSourceStream('all.min.js'))
-        .pipe(vinylBuffer())
+    gulp.src('src/modules/app/app.js')
+        .pipe(gulp_jspm({selfExecutingBundle: true}))
         .pipe(uglify())
-        .pipe(gulp.dest('dist/modules'))
-        .on('error', function (error) {
-            console.error('js error: ' + error);
-        });
-    
-    // css
-    gulp.src('src/modules/app/app.scss')
-        .pipe(sass({errLogToConsole: true}))
-        .pipe(cmq({log: true}))
-        .pipe(autoprefixer({browsers: ['last 2 versions']}))
-        .pipe(rename('all.min.css'))
-        .pipe(minifyCSS())
-        .pipe(gulp.dest('dist/modules'))
-        .on('error', function (error) {
-            console.error('css error: ' + error);
-        });
-});
-
-// start a node server
-gulp.task('connect', function () {
-    connect.server({livereload: true});
-});
+        .pipe(rename('all.min.js'))
+        .pipe(gulp.dest('build/modules'));
+}); 
 
 // start watch tasks
 gulp.task('watch', function () {
+    'use strict';
     gulp.watch(['src/**/*.html'], ['html']);
     gulp.watch(['src/**/*.scss'], ['css']);
     gulp.watch(['src/**/*.js'], ['js']);
 });
 
 // default task
-gulp.task('default', ['connect', 'html', 'css', 'js', 'watch']);
+gulp.task('default', ['connect', 'css', 'html', 'js', 'watch']);

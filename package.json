@@ -1,37 +1,46 @@
 {
   "name": "es6-modules",
-  "version": "1.0.0",
   "description": "Example showing how to use ES6 Modules today",
-  "main": "index.js",
+  "version": "1.0.0",
+  "main": "config.js",
+  "dependencies": {},
   "scripts": {
-    "test": "gulp"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "es6-modules"
+    "url": "git+https://github.com/kmturley/es6-modules.git"
   },
   "keywords": [
     "es6",
-    "modules",
-    "babel"
+    "jspm",
+    "gulp",
+    "modules"
   ],
   "author": "kmturley",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kmturley/es6-modules/issues"
+  },
+  "homepage": "https://github.com/kmturley/es6-modules#readme",
+  "jspm": {
+    "dependencies": {},
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.8.24",
+      "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "core-js": "npm:core-js@^1.1.4"
+    }
+  },
   "devDependencies": {
-    "babel-preset-es2015": "^6.1.18",
-    "babelify": "^7.2.0",
-    "browserify": "^12.0.1",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-combine-media-queries": "^0.2.0",
     "gulp-connect": "^2.2.0",
-    "gulp-html-replace": "^1.4.5",
-    "gulp-minify-css": "^1.1.1",
+    "gulp-html-replace": "^1.5.5",
+    "gulp-jspm": "^0.5.5",
+    "gulp-minify-css": "^1.2.2",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.1.0",
-    "gulp-uglify": "^1.2.0",
-    "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0"
-  },
-  "dependencies": {}
+    "gulp-uglify": "^1.5.1"
+  }
 }
