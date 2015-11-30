@@ -9,6 +9,7 @@ var autoprefixer = require('gulp-autoprefixer'),
     cmq = require('gulp-combine-media-queries'),
     connect = require('gulp-connect'),
     del = require('del'),
+    esdoc = require('gulp-esdoc'),
     gulp = require('gulp'),
     gulp_jspm = require('gulp-jspm'),
     htmlreplace = require('gulp-html-replace'),
@@ -55,6 +56,13 @@ gulp.task('css', function () {
     
     gulp.src(paths.src + paths.css)
         .pipe(connect.reload());
+});
+
+// docs
+gulp.task('docs', function () {
+    'use strict';
+    gulp.src(paths.src)
+        .pipe(esdoc({destination: 'docs'}));
 });
 
 // html

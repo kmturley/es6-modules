@@ -22,6 +22,7 @@ The following packages will be installed:
 
 * gulp - Task runner
 * gulp-autoprefixer - Adds browser prefixes to css automatically
+* gulp-esdoc - Auto-generates js documentation
 * gulp-html-replace - Replaces production html code with build code
 * gulp-imagemin - Minifies images to create smaller files
 * gulp-jspm - ES6 compiler
@@ -43,3 +44,7 @@ To run the server type the command below and then point your browser to http://l
 To build the ES5 versions run the command below and navigate to http://localhost:8080/build/
 
     gulp build
+
+To generate the documentation run the command below and navigate to http://localhost:8080/docs/
+
+    gulp docs
