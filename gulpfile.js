@@ -19,6 +19,7 @@ var autoprefixer = require('gulp-autoprefixer'),
     pngquant = require('imagemin-pngquant'),
     rename = require('gulp-rename'),
     sass = require('gulp-sass'),
+    sassdoc = require('sassdoc'),
     uglify = require('gulp-uglify'),
     paths = {
         server: '',
@@ -61,8 +62,12 @@ gulp.task('css', function () {
 // docs
 gulp.task('docs', function () {
     'use strict';
+    
     gulp.src(paths.src)
-        .pipe(esdoc({destination: 'docs'}));
+        .pipe(esdoc({destination: 'docs/js'}));
+    
+    gulp.src(paths.src + paths.scss)
+        .pipe(sassdoc({dest: 'docs/css'}));
 });
 
 // html
