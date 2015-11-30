@@ -34,6 +34,7 @@ The following packages will be installed:
 * gulp-sass - Compiles scss into css
 * gulp-uglify - Minifies javascript
 * imagemin-pngquant - Plugin for imagemin to minify png images
+* sassdoc - Auto-generates css documentation
 
 ## Usage
 

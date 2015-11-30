@@ -6,15 +6,15 @@
 /*globals require, console*/
 
 var autoprefixer = require('gulp-autoprefixer'),
-    cmq = require('gulp-combine-media-queries'),
+    combineMediaQueries = require('gulp-combine-media-queries'),
     connect = require('gulp-connect'),
     del = require('del'),
     esdoc = require('gulp-esdoc'),
     gulp = require('gulp'),
-    gulp_jspm = require('gulp-jspm'),
-    htmlreplace = require('gulp-html-replace'),
+    htmlReplace = require('gulp-html-replace'),
     imagemin = require('gulp-imagemin'),
-    minifyCSS = require('gulp-minify-css'),
+    jspm = require('gulp-jspm'),
+    minifyCss = require('gulp-minify-css'),
     minifyHtml = require('gulp-minify-html'),
     pngquant = require('imagemin-pngquant'),
     rename = require('gulp-rename'),
@@ -47,7 +47,7 @@ gulp.task('css', function () {
 
     gulp.src(paths.src + paths.rootSCSS)
         .pipe(sass({errLogToConsole: true}))
-        .pipe(cmq({log: true}))
+        .pipe(combineMediaQueries({log: true}))
         .pipe(autoprefixer({browsers: ['last 2 versions']}))
         .pipe(rename('all.css'))
         .pipe(gulp.dest(paths.src + '/modules'))
@@ -98,7 +98,7 @@ gulp.task('build', function () {
     del(['build']);
     
     gulp.src(paths.src + paths.rootCSS)
-        .pipe(minifyCSS())
+        .pipe(minifyCss())
         .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest(paths.build + '/modules'))
         .on('error', function (error) {
@@ -106,7 +106,7 @@ gulp.task('build', function () {
         });
     
     gulp.src(paths.src + paths.html)
-        .pipe(htmlreplace({
+        .pipe(htmlReplace({
             'css': 'modules/all.min.css',
             'js': 'modules/all.min.js'
         }))
@@ -128,7 +128,7 @@ gulp.task('build', function () {
         });
     
     gulp.src(paths.src  + paths.rootJS)
-        .pipe(gulp_jspm({selfExecutingBundle: true}))
+        .pipe(jspm({selfExecutingBundle: true}))
         .pipe(uglify())
         .pipe(rename('all.min.js'))
         .pipe(gulp.dest(paths.build + '/modules'))
