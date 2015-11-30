@@ -20,13 +20,14 @@ var autoprefixer = require('gulp-autoprefixer'),
     sass = require('gulp-sass'),
     uglify = require('gulp-uglify'),
     paths = {
-        'build': 'build',
-        'src': 'src',
-        'css': '/**/*.css',
-        'html': '/**/*.html',
-        'img': '/**/*.{jpg,png}',
-        'js': '/**/*.js',
-        'scss': '/**/*.css',
+        server: '',
+        build: 'build',
+        src: 'src',
+        css: '/**/*.css',
+        html: '/**/*.html',
+        img: '/**/*.{jpg,png}',
+        js: '/**/*.js',
+        scss: '/**/*.scss',
         rootCSS: '/modules/all.css',
         rootSCSS: '/modules/app/app.scss',
         rootJS: '/modules/app/app.js'
@@ -35,7 +36,7 @@ var autoprefixer = require('gulp-autoprefixer'),
 // server
 gulp.task('connect', function () {
     'use strict';
-    connect.server({livereload: true});
+    connect.server({root: paths.server, livereload: true});
 });
 
 // css
@@ -126,6 +127,7 @@ gulp.task('build', function () {
 // watch for file changes
 gulp.task('watch', function () {
     'use strict';
+
     gulp.watch([paths.src + paths.html], ['html']);
     gulp.watch([paths.src + paths.img], ['img']);
     gulp.watch([paths.src + paths.scss], ['css']);
