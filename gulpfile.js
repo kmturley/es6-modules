@@ -3,7 +3,7 @@
  * @file gulpfile
  */
 
-/*globals require*/
+/*globals require, console*/
 
 var autoprefixer = require('gulp-autoprefixer'),
     cmq = require('gulp-combine-media-queries'),
@@ -63,7 +63,10 @@ gulp.task('build', function () {
     gulp.src('src/modules/all.css')
         .pipe(minifyCSS())
         .pipe(rename('all.min.css'))
-        .pipe(gulp.dest('build/modules'));
+        .pipe(gulp.dest('build/modules'))
+        .on('error', function (error) {
+            console.error('css error: ' + error);
+        });
     
     gulp.src('src/**/*.html')
         .pipe(htmlreplace({
@@ -79,8 +82,11 @@ gulp.task('build', function () {
         .pipe(gulp_jspm({selfExecutingBundle: true}))
         .pipe(uglify())
         .pipe(rename('all.min.js'))
-        .pipe(gulp.dest('build/modules'));
-}); 
+        .pipe(gulp.dest('build/modules'))
+        .on('error', function (error) {
+            console.error('js error: ' + error);
+        });
+});
 
 // start watch tasks
 gulp.task('watch', function () {
