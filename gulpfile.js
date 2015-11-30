@@ -8,6 +8,7 @@
 var autoprefixer = require('gulp-autoprefixer'),
     cmq = require('gulp-combine-media-queries'),
     connect = require('gulp-connect'),
+    del = require('del'),
     gulp = require('gulp'),
     gulp_jspm = require('gulp-jspm'),
     htmlreplace = require('gulp-html-replace'),
@@ -17,7 +18,19 @@ var autoprefixer = require('gulp-autoprefixer'),
     pngquant = require('imagemin-pngquant'),
     rename = require('gulp-rename'),
     sass = require('gulp-sass'),
-    uglify = require('gulp-uglify');
+    uglify = require('gulp-uglify'),
+    paths = {
+        'build': 'build',
+        'src': 'src',
+        'css': '/**/*.css',
+        'html': '/**/*.html',
+        'img': '/**/*.{jpg,png}',
+        'js': '/**/*.js',
+        'scss': '/**/*.css',
+        rootCSS: '/modules/all.css',
+        rootSCSS: '/modules/app/app.scss',
+        rootJS: '/modules/app/app.js'
+    };
 
 // server
 gulp.task('connect', function () {
@@ -29,38 +42,38 @@ gulp.task('connect', function () {
 gulp.task('css', function () {
     'use strict';
 
-    gulp.src('src/modules/app/app.scss')
+    gulp.src(paths.src + paths.rootSCSS)
         .pipe(sass({errLogToConsole: true}))
         .pipe(cmq({log: true}))
         .pipe(autoprefixer({browsers: ['last 2 versions']}))
         .pipe(rename('all.css'))
-        .pipe(gulp.dest('src/modules'))
+        .pipe(gulp.dest(paths.src + '/modules'))
         .on('error', function (error) {
             console.error('css error: ' + error);
         });
     
-    gulp.src('src/**/*.css')
+    gulp.src(paths.src + paths.css)
         .pipe(connect.reload());
 });
 
 // html
 gulp.task('html', function () {
     'use strict';
-    gulp.src('src/**/*.html')
+    gulp.src(paths.src + paths.html)
         .pipe(connect.reload());
 });
 
 // images
 gulp.task('img', function () {
     'use strict';
-    gulp.src('src/**/*.{jpg,png}')
+    gulp.src(paths.src + paths.img)
         .pipe(connect.reload());
 });
 
 // javascript
 gulp.task('js', function () {
     'use strict';
-    gulp.src('src/**/*.js')
+    gulp.src(paths.src + paths.js)
         .pipe(connect.reload());
 });
 
@@ -68,53 +81,55 @@ gulp.task('js', function () {
 gulp.task('build', function () {
     'use strict';
     
-    gulp.src('src/modules/all.css')
+    del(['build']);
+    
+    gulp.src(paths.src + paths.rootCSS)
         .pipe(minifyCSS())
         .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest('build/modules'))
+        .pipe(gulp.dest(paths.build + '/modules'))
         .on('error', function (error) {
             console.error('css error: ' + error);
         });
     
-    gulp.src('src/**/*.html')
+    gulp.src(paths.src + paths.html)
         .pipe(htmlreplace({
             'css': 'modules/all.min.css',
             'js': 'modules/all.min.js'
         }))
         .pipe(minifyHtml())
-        .pipe(gulp.dest('build'))
+        .pipe(gulp.dest(paths.build))
         .on('error', function (error) {
             console.error('html error: ' + error);
         });
     
-    gulp.src('src/**/*.{jpg,png}')
+    gulp.src(paths.src + paths.img)
         .pipe(imagemin({
             progressive: true,
             svgoPlugins: [{removeViewBox: false}],
             use: [pngquant()]
         }))
-        .pipe(gulp.dest('build'))
+        .pipe(gulp.dest(paths.build))
         .on('error', function (error) {
             console.error('img error: ' + error);
         });
     
-    gulp.src('src/modules/app/app.js')
+    gulp.src(paths.src  + paths.rootJS)
         .pipe(gulp_jspm({selfExecutingBundle: true}))
         .pipe(uglify())
         .pipe(rename('all.min.js'))
-        .pipe(gulp.dest('build/modules'))
+        .pipe(gulp.dest(paths.build + '/modules'))
         .on('error', function (error) {
             console.error('js error: ' + error);
         });
 });
 
-// watch
+// watch for file changes
 gulp.task('watch', function () {
     'use strict';
-    gulp.watch(['src/**/*.html'], ['html']);
-    gulp.watch(['src/**/*.{jpg,png}'], ['img']);
-    gulp.watch(['src/**/*.scss'], ['css']);
-    gulp.watch(['src/**/*.js'], ['js']);
+    gulp.watch([paths.src + paths.html], ['html']);
+    gulp.watch([paths.src + paths.img], ['img']);
+    gulp.watch([paths.src + paths.scss], ['css']);
+    gulp.watch([paths.src + paths.js], ['js']);
 });
 
 // default
