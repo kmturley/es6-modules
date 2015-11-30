@@ -40,6 +40,13 @@ Optimisation libraries used:
 * gulp-uglify - Minifies javascript
 * imagemin-pngquant - Plugin for imagemin to minify png images
 
+Testing libraries used:
+
+* karma - Testing task runner
+* karma-chrome-launcher - Testing Chrome browser
+* karma-jasmine - Testing framework
+* karma-jspm - Testing support for ES6
+
 Documentation libraries used:
 
 * gulp-esdoc - Auto-generates js documentation

@@ -3,7 +3,7 @@
  * @file gulpfile
  */
 
-/*globals require, console*/
+/*globals require, console, __dirname*/
 
 var autoprefixer = require('gulp-autoprefixer'),
     combineMediaQueries = require('gulp-combine-media-queries'),
@@ -14,6 +14,7 @@ var autoprefixer = require('gulp-autoprefixer'),
     htmlReplace = require('gulp-html-replace'),
     imagemin = require('gulp-imagemin'),
     jspm = require('gulp-jspm'),
+    karma = require('karma'),
     minifyCss = require('gulp-minify-css'),
     minifyHtml = require('gulp-minify-html'),
     pngquant = require('imagemin-pngquant'),
@@ -137,10 +138,18 @@ gulp.task('build', function () {
         });
 });
 
+// run unit tests
+gulp.task('test', function () {
+    'use strict';
+    new karma.Server({
+        configFile: __dirname + '/karma.conf.js',
+        singleRun: true
+    }).start();
+});
+
 // watch for file changes
 gulp.task('watch', function () {
     'use strict';
-
     gulp.watch([paths.src + paths.html], ['html']);
     gulp.watch([paths.src + paths.img], ['img']);
     gulp.watch([paths.src + paths.scss], ['css']);
