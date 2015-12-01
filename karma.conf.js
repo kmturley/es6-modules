@@ -16,8 +16,9 @@ module.exports = function (config) {
         jspm: {
             useBundles: true,
             config: 'config.js',
+            packages: 'jspm_packages',
             loadFiles: ['src/**/*.spec.js'],
-            serveFiles: ['src/**/!(*spec).js']
+            serveFiles: ['src/**/!(*.spec).js']
         },
 
         // list of files / patterns to load in the browser
