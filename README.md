@@ -55,7 +55,7 @@ After installation has completed you will have access to the following features.
 * [gulp-uglify](https://github.com/terinjokes/gulp-uglify) - Minifies javascript
 * [imagemin-pngquant](https://github.com/imagemin/imagemin-pngquant) - Plugin for imagemin to minify png images
 
-[http://localhost:8080/build/](http://localhost:8080/build/)
+[http://localhost:8080/www/](http://localhost:8080/www/)
 
 ### Test
 
@@ -77,10 +77,10 @@ After installation has completed you will have access to the following features.
 
 ## Directory Layout
 
-    build/                --> Optimised code
     gulp/                 --> Gulp tasks
     karma.conf.js         --> Test runner configuration
-    src/                  --> Source code
+    src/                  --> Development code
+    www/                  --> Production code (after 'gulp optimise' command)
 
 ## Contact
 

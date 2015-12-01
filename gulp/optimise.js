@@ -20,7 +20,7 @@ gulp.task('optimise.css', function () {
     gulp.src(global.paths.src + global.paths.rootCSS)
         .pipe(minifyCss())
         .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest(global.paths.build + '/modules'))
+        .pipe(gulp.dest(global.paths.www + '/modules'))
         .on('error', function (error) {
             console.error('css error: ' + error);
         });
@@ -34,7 +34,7 @@ gulp.task('optimise.html', function () {
             'js': 'modules/all.min.js'
         }))
         .pipe(minifyHtml())
-        .pipe(gulp.dest(global.paths.build))
+        .pipe(gulp.dest(global.paths.www))
         .on('error', function (error) {
             console.error('html error: ' + error);
         });
@@ -48,7 +48,7 @@ gulp.task('optimise.img', function () {
             svgoPlugins: [{removeViewBox: false}],
             use: [pngquant()]
         }))
-        .pipe(gulp.dest(global.paths.build))
+        .pipe(gulp.dest(global.paths.www))
         .on('error', function (error) {
             console.error('img error: ' + error);
         });
@@ -61,7 +61,7 @@ gulp.task('optimise.js', function () {
         .pipe(jspm({selfExecutingBundle: true}))
         .pipe(uglify())
         .pipe(rename('all.min.js'))
-        .pipe(gulp.dest(global.paths.build + '/modules'))
+        .pipe(gulp.dest(global.paths.www + '/modules'))
         .on('error', function (error) {
             console.error('js error: ' + error);
         });

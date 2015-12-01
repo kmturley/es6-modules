@@ -12,8 +12,8 @@ var connect = require('gulp-connect'),
 
 global.paths = {
     server: '',
-    build: 'build',
     src: 'src',
+    www: 'www',
     css: '/**/*.css',
     html: '/**/*.html',
     img: '/**/*.{jpg,png}',
@@ -33,19 +33,19 @@ gulp.task('connect', function () {
     connect.server({root: global.paths.server, livereload: true});
 });
 
-// clean out build folder
+// clean out www folder
 gulp.task('clean', function () {
     'use strict';
-    del([global.paths.build]);
+    del([global.paths.www]);
 });
 
 // watch for file changes
 gulp.task('watch', function () {
     'use strict';
-    gulp.watch([global.paths.src + global.paths.html], ['html']);
-    gulp.watch([global.paths.src + global.paths.img], ['img']);
-    gulp.watch([global.paths.src + global.paths.scss], ['css']);
-    gulp.watch([global.paths.src + global.paths.js], ['js']);
+    gulp.watch([global.paths.src + global.paths.html], ['compile.html']);
+    gulp.watch([global.paths.src + global.paths.img], ['compile.img']);
+    gulp.watch([global.paths.src + global.paths.scss], ['compile.css']);
+    gulp.watch([global.paths.src + global.paths.js], ['compile.js']);
 });
 
 // shortcut tasks
