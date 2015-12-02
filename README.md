@@ -18,9 +18,9 @@ Then run the following command to install the dependancies:
 
     jspm install
     npm install
-    
+
 ## Usage
-    
+
 After installation has completed you will have access to the following features.
     
 ### Default
@@ -61,10 +61,11 @@ After installation has completed you will have access to the following features.
 
     gulp test
 
-* [karma](https://github.com/karma-runner/karma) - Testing task runner
-* [karma-chrome-launcher](https://github.com/karma-runner/karma-chrome-launcher) - Testing Chrome browser
-* [karma-jasmine](https://github.com/karma-runner/karma-jasmine) - Testing framework
-* [karma-jspm](https://github.com/Workiva/karma-jspm) - Testing support for ES6
+* [gulp-webdriver](https://github.com/webdriverio/gulp-webdriver) - Testing task runner helper for gulp
+* [jasmine](https://github.com/jasmine/jasmine-npm) - Testing framework
+* [selenium-standalone](https://github.com/vvo/selenium-standalone) - Testing server
+* [webdrivercss](https://github.com/webdriverio/webdrivercss) - Testing CSS regression screenshot comparison tool
+* [webdriverio](https://github.com/webdriverio/webdriverio) - Testing task runner
 
 ### Document
 

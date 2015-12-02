@@ -52,5 +52,5 @@ gulp.task('watch', function () {
 gulp.task('default', ['connect', 'compile', 'watch']);
 gulp.task('compile', ['compile.css', 'compile.html', 'compile.img', 'compile.js']);
 gulp.task('optimise', ['clean', 'optimise.css', 'optimise.html', 'optimise.img', 'optimise.js']);
-gulp.task('test', ['test.js']);
+gulp.task('test', ['test.all']);
 gulp.task('document', ['document.css', 'document.js']);

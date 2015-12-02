@@ -1,17 +1,32 @@
-import App from 'app';
+/**
+ * Testing
+ * @file test
+ */
 
-describe('App', () => {
-    let app;
+/*globals require, describe, it, browser*/
 
-    beforeEach(() => {
-        app = new App();
+var assert = require('assert');
+
+describe('page title', function () {
+    'use strict';
+    
+    it('has the correct page title', function () {
+        return browser
+            .url('/')
+            .getTitle().then(function (title) {
+                assert.equal(title, 'ES6 Modules');
+            });
     });
-
-    afterEach(() => {
-
-    });
-
-    it('should return "Hello Ted" when calling introduction', () => {
-        expect(app.run()).to.equal('Hello Ted');
+    
+    it('looks like the original', function () {
+        return browser
+            .url('/')
+            .webdrivercss('list', {
+                name: 'list',
+                elem: '#list'
+            }, function (err, res) {
+                assert.ifError(err);
+                assert.ok(res.isWithinMisMatchTolerance);
+            });
     });
 });

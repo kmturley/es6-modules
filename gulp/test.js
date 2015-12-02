@@ -6,12 +6,30 @@
 /*globals require, console, global, __dirname*/
 
 var gulp = require('gulp'),
-    karma = require('karma');
+    selenium = require('selenium-standalone'),
+    webdriver = require('gulp-webdriver');
 
-gulp.task('test.js', function () {
+gulp.task('test.install', function (done) {
     'use strict';
-    new karma.Server({
-        configFile: __dirname + '/karma.conf.js',
-        singleRun: true
-    }).start();
+    selenium.install({logger: console.error}, function () {
+        selenium.start(function (err, child) {
+            if (err) { return done(err); }
+            selenium.child = child;
+            done();
+        });
+    });
+});
+
+gulp.task('test.all', ['test.install'], function () {
+    'use strict';
+    gulp.src('wdio.conf.js')
+        .pipe(webdriver({
+            wdioBin: './node_modules/.bin/wdio'
+        }))
+        .on('error', function (error) {
+            console.error('test.all error: ' + error);
+            if (selenium.child) {
+                selenium.child.kill();
+            }
+        });
 });
