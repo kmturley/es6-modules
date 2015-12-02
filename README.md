@@ -79,7 +79,7 @@ After installation has completed you will have access to the following features.
 ## Directory Layout
 
     gulp/                 --> Gulp tasks
-    karma.conf.js         --> Test runner configuration
+    wdio.conf.js         --> Test runner configuration
     src/                  --> Development code
     www/                  --> Production code (after 'gulp optimise' command)
 
