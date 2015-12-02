@@ -1,0 +1,27 @@
+////
+/// @group banner
+/// @author kmturley
+////
+
+.banner {
+    background-color: $color-black;
+    background-image: url('../img/alley.jpg');
+    background-size: cover;
+
+    .inner {
+        background-color: $color-black-trans;
+    }
+
+    .title {
+        color: $color-white;
+        margin: 0;
+    }
+}
+
+.red {
+    background-color: $color-red;
+
+    h2 {
+        color: $color-white;
+    }
+}

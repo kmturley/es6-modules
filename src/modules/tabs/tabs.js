@@ -1,8 +1,8 @@
 /**
- * List
+ * Tabs
  */
     
-class List {
+class Tabs {
     introduction(name) {
         /**
          * @param {string} name A person's name
@@ -12,4 +12,4 @@ class List {
     }
 }
 
-export default List;
+export default Tabs;

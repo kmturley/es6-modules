@@ -1,0 +1,30 @@
+////
+/// @group utils
+/// @author kmturley
+////
+
+%last-margin {
+    > *:last-child,
+    > *:last-child > *:last-child,
+    > *:last-child > *:last-child > *:last-child,
+    > *:last-child > *:last-child > *:last-child > *:last-child {
+        margin-bottom: 0;
+    }
+}
+
+%transition {
+    transition: .2s ease-out;
+}
+
+.shadow {
+    box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, .1);
+}
+
+.shadow-animate {
+    @extend .shadow;
+    @extend %transition;
+    transition-property: box-shadow;
+    &:hover {
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, .2);
+    }
+}

@@ -1,0 +1,54 @@
+////
+/// @group tabs
+/// @author kmturley
+////
+
+.tabs {
+    padding: 0;
+
+    input {
+        display: none;
+
+        &:checked + label {
+            background-color: $color-white;
+            color: $color-grey-dark;
+        }
+    }
+
+    label {
+        @extend %transition;
+        color: $color-grey-light;
+        cursor: pointer;
+        float: left;
+        padding: 1em;
+        text-align: center;
+        transition-property: background-color, color;
+
+        &:hover {
+            color: $color-grey-dark;
+        }
+    }
+
+    .tabs-wrap {
+        clear: both;
+    }
+
+    .tab {
+        @extend %last-margin;
+        background-color: $color-white;
+        display: none;
+        padding: 1em;
+    }
+}
+
+.tabs-full label {
+    display: table-cell;
+    float: none;
+    width: 1%;
+}
+
+#tab1:checked ~ .tabs-wrap #tab1content,
+#tab2:checked ~ .tabs-wrap #tab2content,
+#tab3:checked ~ .tabs-wrap #tab3content {
+    display: block;
+}

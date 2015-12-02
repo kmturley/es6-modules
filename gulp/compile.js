@@ -15,7 +15,7 @@ var autoprefixer = require('gulp-autoprefixer'),
 gulp.task('compile.css', function () {
     'use strict';
     gulp.src(global.paths.src + global.paths.rootSCSS)
-        .pipe(sass({errLogToConsole: true}))
+        .pipe(sass().on('error', sass.logError))
         .pipe(combineMediaQueries({log: true}))
         .pipe(autoprefixer({browsers: ['last 2 versions']}))
         .pipe(rename('all.css'))

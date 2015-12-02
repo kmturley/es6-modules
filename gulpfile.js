@@ -20,8 +20,8 @@ global.paths = {
     js: '/**/*.js',
     scss: '/**/*.scss',
     rootCSS: '/modules/all.css',
-    rootSCSS: '/modules/app/app.scss',
-    rootJS: '/modules/app/app.js'
+    rootSCSS: '/modules/all/all.scss',
+    rootJS: '/modules/all/all.js'
 };
 
 // include sub-tasks from folder

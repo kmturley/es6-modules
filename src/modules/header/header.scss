@@ -1,0 +1,159 @@
+////
+/// @group header
+/// @author kmturley
+////
+
+.header {
+    @extend .shadow;
+    background-color: $color-white;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+
+    .logo {
+        float: left;
+        font-size: 1.5em;
+        font-weight: bold;
+        line-height: 2rem;
+        padding: .5rem 1rem;
+        text-decoration: none;
+    }
+
+    ul,
+    li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    ul {
+        @include tablet {
+            float: right;
+        }
+    }
+
+    li {
+        @include tablet {
+            float: left;
+        }
+
+        a {
+            border-right: 1px solid $color-grey-lighter;
+            display: block;
+            padding: 1em;
+            text-decoration: none;
+
+            @include tablet {
+                line-height: 2rem;
+                padding: .5rem 1rem;
+            }
+
+            &:hover {
+                background-color: $color-grey-lighter;
+            }
+        }
+    }
+
+    .btn {
+        .menu {
+            @extend %transition;
+            border-top: 1px solid $color-grey-lighter;
+            height: 0;
+            overflow: hidden;
+            transition-property: height;
+
+            @include tablet {
+                border-top: 0;
+                height: auto;
+            }
+        }
+
+        &:hover {
+            .menu {
+                height: 224px;
+                @include tablet {
+                    height: auto;
+                }
+            }
+        }
+    }
+
+    .btn-link {
+        float: right;
+        font-size: 1.5em;
+        line-height: 2rem;
+        padding: .5rem 1rem;
+
+        @include tablet {
+            display: none;
+        }
+    }
+
+    .menu {
+        clear: both;
+    }
+    
+    .navicon-button {
+        display: inline-block;
+        float: right;
+        padding: 23px 15px;
+        position: relative;
+        .navicon:before,
+        .navicon:after {
+            @extend %transition;
+        }
+        @include tablet {
+            display: none;
+        }
+    }
+    .navicon {
+        @extend %transition;
+        display: block;
+        background: $color-grey;
+        height: 2px;
+        position: relative;
+        width: 18px;
+        transition-property: background;
+        &:before, &:after {
+            @extend %transition;
+            background: $color-grey;
+            display: block;
+            content: "";
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            transition-property: transform;
+        }
+        &:before {
+            top: 5px;
+        }
+        &:after {
+            top: -5px;
+        }
+    }
+}
+
+.btn:hover {
+    .navicon {
+        background: transparent;
+        &:before {
+            transform: rotate(-45deg);
+        }
+        &:after {
+            transform: rotate(45deg);
+        }
+    }
+    .menu {
+        height: 204px;
+        @include tablet {
+            height: auto;
+        }
+    }
+}
+
+.btn:hover:not(.steps) .navicon:before,
+.btn:hover:not(.steps) .navicon:after {
+    top: 0;
+}

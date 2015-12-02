@@ -4,28 +4,105 @@
     <meta charset="utf-8" />
     <title>ES6 Modules</title>
     <meta name="description" content="" />
-    <meta name=viewport content="width=device-width,initial-scale=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <!-- build:css -->
     <link rel="stylesheet" href="modules/all.css" />
     <!-- endbuild -->
 </head>
-<body class="app">
-    <img src="img/es6-logo.png" alt="ES6" />
-    <p>Base project template for ES6 modules including:</p>
-    <ul>
-        <li>Server with live reload of static files</li>
-        <li>Compile tasks to run ES6 JavaScript and SASS CSS in the browser</li>
-        <li>Optimise tasks to create concatenated and minified ES5 versions for production environments</li>
-        <li>Test tasks to automate unit tests and functional tests</li>
-        <li>Document tasks to automatically create documentation from the code</li>
-    </ul>
-    <p><a href="../src/index.html">Dev</a> / <a href="../www/index.html">Production</a></p>
-    <div class="list" id="list"></div>
+<body>
+    <div class="header">
+        <a href="#" class="logo">es6 modules</a>
+        <ul>
+            <li class="btn">
+                <a href="#" class="navicon-button" aria-label="Toggle Navigation"><span class="navicon"></span></a>
+<!--                <a href="#" class="btn-link">&#9776;</a>-->
+                <ul class="menu">
+                    <li><a href="#wide">Widescreen</a></li>
+                    <li><a href="#tabs">Tabs</a></li>
+                    <li><a href="#grid">Grid</a></li>
+                    <li><a href="#ratio">Fit ratio</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="main">
+        <div class="anchor" id="wide"></div>
+        <div class="section fit-widescreen banner">
+            <div class="inner">
+                <div class="t">
+                    <div class="tc">
+                        <h1 class="title">ES6 Modules</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="anchor" id="tabs"></div>
+        <div class="section tabs tabs-full">
+            <input id="tab1" type="radio" name="tabs" checked />
+            <label for="tab1">About</label>
+            <input id="tab2" type="radio" name="tabs" />
+            <label for="tab2">Features</label>
+            <input id="tab3" type="radio" name="tabs" />
+            <label for="tab3">Contact</label>
+            <div class="tabs-wrap">
+                <div class="tab" id="tab1content">
+                    <p>Base project template for ES6 modules including:</p>
+                    <ul>
+                        <li>Server with live reload of static files</li>
+                        <li>Compile tasks to run ES6 JavaScript and SASS CSS in the browser</li>
+                        <li>Optimise tasks to create concatenated and minified ES5 versions for production environments</li>
+                        <li>Test tasks to automate unit tests and functional tests</li>
+                        <li>Document tasks to automatically create documentation from the code</li>
+                    </ul>
+                    <p><a href="../src/index.html">Dev</a> / <a href="../www/index.html">Production</a></p>
+                    <div class="list" id="list"></div>
+                </div>
+                <div class="tab" id="tab2content"><p>Morbi at nunc vel diam dictum eleifend et ut est. Sed sed justo rutrum, fringilla est a, iaculis nulla.</p></div>
+                <div class="tab" id="tab3content"><p>Quisque pellentesque nibh massa. Integer sollicitudin neque metus</p></div>
+            </div>
+        </div>
+        <div class="anchor" id="grid"></div>
+        <div class="section debug">
+            <h2>Lorem ipsum dolor adipiscing</h2>
+            <p>Vestibulum sed orci eu dolor dignissim molestie. Curabitur eu orci libero. Ut molestie porta tellus sed rutrum. Suspendisse tristique est cursus neque bibendum gravida.</p>
+            <p>Aenean est lorem, bibendum vestibulum lectus non, varius tempus ligula. Morbi at nunc vel diam dictum eleifend et ut est. Sed sed justo rutrum, fringilla est a, iaculis nulla. Cras tincidunt magna quis ex interdum, sed malesuada purus rutrum. Quisque finibus odio tortor, id aliquam mi iaculis a.</p>
+            <div class="row">
+                <div class="col w1of2"><p>col w1of2</p></div>
+                <div class="col w1of2"><p>col w1of2</p></div>
+            </div>
+            <div class="row">
+                <div class="col w1of3"><p>col w1of3</p></div>
+                <div class="col w1of3"><p>col w1of3</p></div>
+                <div class="col w1of3"><p>col w1of3</p></div>
+            </div>
+            <div class="row">
+                <div class="col w2of3"><p>col w2of3</p></div>
+                <div class="col w1of3"><p>col w1of3</p></div>
+            </div>
+            <div class="row">
+                <div class="col w2of3">
+                    <div class="row">
+                        <div class="col w1of2"><p>col w1of2 - You can nest columns inside each other!</p></div>
+                        <div class="col w1of2"><p>col w1of2</p></div>
+                    </div>
+                </div>
+                <div class="col w1of3"><p>col w1of3</p></div>
+            </div>
+        </div>
+        <div class="anchor" id="ratio"></div>
+        <div class="section fit-height fit-width red">
+            <div class="t">
+                <div class="tc">
+                    <h2>Fit height &amp; width</h2>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- build:js -->
     <script src="../jspm_packages/system.js"></script>
     <script src="../config.js"></script>
     <script>
-        System.import('./modules/app/app.js');
+        System.import('./modules/all/all.js');
     </script>
     <!-- endbuild -->
 </body>
