@@ -20,7 +20,7 @@ gulp.task('test.install', function (done) {
     });
 });
 
-gulp.task('test.all', ['test.install'], function () {
+gulp.task('test.run', function () {
     'use strict';
     gulp.src('wdio.conf.js')
         .pipe(webdriver({
