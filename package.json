@@ -50,7 +50,7 @@
     "imagemin-pngquant": "^4.2.0",
     "jasmine": "^2.3.2",
     "require-dir": "^0.3.0",
-    "sassdoc": "^2.1.16",
+    "sassdoc": "^2.1.15",
     "selenium-standalone": "^4.7.2",
     "webdrivercss": "^2.0.0-beta-rc1",
     "webdriverio": "^3.3.0"
