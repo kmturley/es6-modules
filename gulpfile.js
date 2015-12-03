@@ -14,6 +14,7 @@ global.paths = {
     server: '',
     src: 'src',
     www: 'www',
+    assets: '/assets',
     css: '/**/*.css',
     html: '/**/*.html',
     img: '/**/*.{jpg,png}',
@@ -51,6 +52,6 @@ gulp.task('watch', function () {
 // shortcut tasks
 gulp.task('default', ['connect', 'compile', 'watch']);
 gulp.task('compile', ['compile.css', 'compile.html', 'compile.img', 'compile.js']);
-gulp.task('optimise', ['clean', 'optimise.css', 'optimise.html', 'optimise.img', 'optimise.js']);
+gulp.task('optimise', ['clean', 'optimise.assets', 'optimise.css', 'optimise.html', 'optimise.img', 'optimise.js']);
 gulp.task('test', ['test.install', 'test.run']);
 gulp.task('document', ['document.css', 'document.js']);

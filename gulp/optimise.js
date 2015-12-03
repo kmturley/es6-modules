@@ -15,6 +15,15 @@ var htmlReplace = require('gulp-html-replace'),
     rename = require('gulp-rename'),
     uglify = require('gulp-uglify');
 
+gulp.task('optimise.assets', function () {
+    'use strict';
+    gulp.src([global.paths.src + global.paths.assets + '/**/*'])
+        .pipe(gulp.dest(global.paths.www + global.paths.assets))
+        .on('error', function (error) {
+            console.error('assets error: ' + error);
+        });
+});
+
 gulp.task('optimise.css', function () {
     'use strict';
     gulp.src(global.paths.src + global.paths.rootCSS)
