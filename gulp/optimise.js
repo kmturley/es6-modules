@@ -17,30 +17,36 @@ var htmlReplace = require('gulp-html-replace'),
 
 gulp.task('optimise.assets', function () {
     'use strict';
-    gulp.src([global.paths.src + global.paths.assets + '/**/*'])
+    return gulp.src([global.paths.src + global.paths.assets + '/**/*'])
         .pipe(gulp.dest(global.paths.www + global.paths.assets))
         .on('error', function (error) {
             console.error('assets error: ' + error);
         });
 });
 
-gulp.task('optimise.css', function () {
+gulp.task('optimise.css', ['compile.css'], function () {
     'use strict';
-    gulp.src(global.paths.src + global.paths.rootCSS)
+    return gulp.src(global.paths.src + global.paths.rootCSS)
         .pipe(minifyCss())
         .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest(global.paths.www + '/modules'))
+        .pipe(gulp.dest(global.paths.www + '/components'))
         .on('error', function (error) {
             console.error('css error: ' + error);
         });
 });
 
-gulp.task('optimise.html', function () {
+gulp.task('optimise.html', ['compile.html'], function () {
     'use strict';
-    gulp.src(global.paths.src + global.paths.html)
+    return gulp.src(global.paths.src + global.paths.html)
         .pipe(htmlReplace({
-            'css': 'modules/all.min.css',
-            'js': 'modules/all.min.js'
+            'css': {
+                src: [['{%', 'web/components/all.min.css', '%}']],
+                tpl: '<link rel="stylesheet" href="%s static \'%s\' %s" />'
+            },
+            'js': {
+                src: [['{%', 'web/components/all.min.js', '%}']],
+                tpl: '<script src="%s static \'%s\' %s"></script>'
+            }
         }))
         .pipe(minifyHtml())
         .pipe(gulp.dest(global.paths.www))
@@ -49,9 +55,9 @@ gulp.task('optimise.html', function () {
         });
 });
 
-gulp.task('optimise.img', function () {
+gulp.task('optimise.img', ['compile.img'], function () {
     'use strict';
-    gulp.src(global.paths.src + global.paths.img)
+    return gulp.src(global.paths.src + global.paths.img)
         .pipe(imagemin({
             progressive: true,
             svgoPlugins: [{removeViewBox: false}],
@@ -63,14 +69,14 @@ gulp.task('optimise.img', function () {
         });
 });
 
-gulp.task('optimise.js', function () {
+gulp.task('optimise.js', ['compile.js'], function () {
     'use strict';
 
-    gulp.src(global.paths.src  + global.paths.rootJS)
+    return gulp.src(global.paths.src  + global.paths.rootJS)
         .pipe(jspm({selfExecutingBundle: true}))
         .pipe(uglify())
         .pipe(rename('all.min.js'))
-        .pipe(gulp.dest(global.paths.www + '/modules'))
+        .pipe(gulp.dest(global.paths.www + '/components'))
         .on('error', function (error) {
             console.error('js error: ' + error);
         });

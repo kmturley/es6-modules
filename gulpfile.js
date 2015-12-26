@@ -20,38 +20,37 @@ global.paths = {
     img: '/**/*.{jpg,png}',
     js: '/**/*.js',
     scss: '/**/*.scss',
-    rootCSS: '/modules/all.css',
-    rootSCSS: '/modules/all/all.scss',
-    rootJS: '/modules/all/all.js'
+    rootCSS: '/components/all.css',
+    rootSCSS: '/components/all.scss',
+    rootJS: '/components/all.js'
 };
 
-// include sub-tasks from folder
 requireDir('gulp');
 
-// run server
 gulp.task('connect', function () {
     'use strict';
-    connect.server({root: global.paths.server, livereload: true});
+    connect.server({
+        root: global.paths.server,
+        livereload: true,
+        port: 8181
+    });
 });
 
-// clean out www folder
 gulp.task('clean', function () {
     'use strict';
     del([global.paths.www]);
 });
 
-// watch for file changes
 gulp.task('watch', function () {
     'use strict';
-    gulp.watch([global.paths.src + global.paths.html], ['compile.html']);
-    gulp.watch([global.paths.src + global.paths.img], ['compile.img']);
-    gulp.watch([global.paths.src + global.paths.scss], ['compile.css']);
-    gulp.watch([global.paths.src + global.paths.js], ['compile.js']);
+    gulp.watch([global.paths.src + global.paths.scss], ['optimise.css']);
+    gulp.watch([global.paths.src + global.paths.html], ['optimise.html']);
+    gulp.watch([global.paths.src + global.paths.img], ['optimise.img']);
+    gulp.watch([global.paths.src + global.paths.js], ['optimise.js']);
 });
 
-// shortcut tasks
 gulp.task('default', ['connect', 'compile', 'watch']);
 gulp.task('compile', ['compile.css', 'compile.html', 'compile.img', 'compile.js']);
 gulp.task('optimise', ['clean', 'optimise.assets', 'optimise.css', 'optimise.html', 'optimise.img', 'optimise.js']);
-gulp.task('test', ['test.install', 'test.run']);
+gulp.task('test', ['test.run']);
 gulp.task('document', ['document.css', 'document.js']);

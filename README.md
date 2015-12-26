@@ -1,3 +1,5 @@
+![ES6 Modules screenshot](https://kmturley.github.io/es6-modules/www/img/screenshot.png)
+
 # ES6 Modules
 
 Base project template for ES6 modules including:
@@ -13,6 +15,11 @@ Base project template for ES6 modules including:
 Ensure you have Node and NPM installed using the instructions at:
 
 [https://nodejs.org/download/](https://nodejs.org/download/)
+
+Also the global packages you will need installed:
+
+    npm install jspm -g
+    npm install gulp -g
 
 Then run the following command to install the dependancies:
 
@@ -79,7 +86,7 @@ After installation has completed you will have access to the following features.
 ## Directory Layout
 
     gulp/                 --> Gulp tasks
-    wdio.conf.js         --> Test runner configuration
+    wdio.conf.js          --> Test runner configuration
     src/                  --> Development code
     www/                  --> Production code (after 'gulp optimise' command)
 

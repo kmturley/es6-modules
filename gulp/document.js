@@ -11,12 +11,12 @@ var esdoc = require('gulp-esdoc'),
 
 gulp.task('document.css', function () {
     'use strict';
-    gulp.src(global.paths.src + global.paths.scss)
+    return gulp.src(global.paths.src + global.paths.scss)
         .pipe(sassdoc({dest: 'docs/css'}));
 });
 
 gulp.task('document.js', function () {
     'use strict';
-    gulp.src(global.paths.src)
+    return gulp.src(global.paths.src)
         .pipe(esdoc({destination: 'docs/js'}));
 });
