@@ -5,11 +5,15 @@ exports.config = {
     exclude: [],
     capabilities: [{
         browserName: 'chrome'
+    }, {
+        browserName: 'firefox'
+    }, {
+        browserName: 'internet explorer'
     }],
     logLevel: 'silent',
     coloredLogs: true,
     screenshotPath: './test/',
-    baseUrl: 'http://localhost:8181',
+    baseUrl: 'http://localhost:8181/src',
     waitforTimeout: 10000,
     framework: 'jasmine',
     reporter: 'spec',

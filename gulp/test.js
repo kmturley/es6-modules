@@ -11,7 +11,7 @@ var gulp = require('gulp'),
 
 gulp.task('selenium-install', function (done) {
     'use strict';
-    selenium.install({logger: console.error}, function (err) {
+    selenium.install({ logger: console.error }, function (err) {
         done(err);
     });
 });
