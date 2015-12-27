@@ -5,7 +5,7 @@
   "main": "config.js",
   "dependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
@@ -24,7 +24,12 @@
   },
   "homepage": "https://github.com/kmturley/es6-modules#readme",
   "jspm": {
-    "dependencies": {},
+    "configFile": "jspm.conf.js",
+    "dependencies": {
+      "angular": "github:angular/bower-angular@^1.4.8",
+      "css": "github:systemjs/plugin-css@^0.1.20",
+      "text": "github:systemjs/plugin-text@^0.0.4"
+    },
     "devDependencies": {
       "babel": "npm:babel-core@^5.8.24",
       "babel-runtime": "npm:babel-runtime@^5.8.24",
@@ -35,23 +40,25 @@
     "del": "^2.1.0",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
-    "gulp-combine-media-queries": "^0.2.0",
     "gulp-connect": "^2.2.0",
     "gulp-esdoc": "^0.2.0",
     "gulp-html-replace": "^1.5.5",
     "gulp-imagemin": "^2.4.0",
     "gulp-jspm": "^0.5.5",
+    "gulp-merge-media-queries": "^0.2.1",
     "gulp-minify-css": "^1.2.2",
     "gulp-minify-html": "^1.0.4",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.1.0",
     "gulp-uglify": "^1.5.1",
+    "gulp-webdriver": "^1.0.2",
     "imagemin-pngquant": "^4.2.0",
-    "jasmine-core": "^2.3.4",
-    "karma": "^0.13.15",
-    "karma-chrome-launcher": "^0.2.1",
-    "karma-jasmine": "^0.3.6",
-    "karma-jspm": "^2.0.2",
-    "sassdoc": "^2.1.16"
+    "jasmine": "^2.3.2",
+    "require-dir": "^0.3.0",
+    "sassdoc": "^2.1.15",
+    "selenium-standalone": "^4.7.2",
+    "systemjs": "^0.19.6",
+    "webdrivercss": "^2.0.0-beta-rc1",
+    "webdriverio": "^2.4.5"
   }
 }

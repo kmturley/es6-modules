@@ -1,0 +1,28 @@
+////
+/// @group mixins
+/// @author kmturley
+////
+
+@mixin mobile {
+    @media (min-width: #{$screen-xs}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: #{$screen-sm}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: #{$screen-md}) {
+        @content;
+    }
+}
+
+@mixin monitor {
+    @media (min-width: #{$screen-lg}) {
+        @content;
+    }
+}
