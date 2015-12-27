@@ -2,7 +2,7 @@
  * Tabs
  */
 
-import Tabs from "../tabs/tabs";
+import Tabs from "./tabs/tabs";
 
 let tabs = new Tabs();
 

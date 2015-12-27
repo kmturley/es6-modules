@@ -5,7 +5,7 @@
   "main": "config.js",
   "dependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
@@ -59,6 +59,6 @@
     "selenium-standalone": "^4.7.2",
     "systemjs": "^0.19.6",
     "webdrivercss": "^2.0.0-beta-rc1",
-    "webdriverio": "^3.3.0"
+    "webdriverio": "^2.4.5"
   }
 }
