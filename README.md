@@ -1,4 +1,4 @@
-![ES6 Modules screenshot](https://kmturley.github.io/es6-modules/www/img/screenshot.png)
+![ES6 Modules screenshot](https://kmturley.github.io/es6-modules/src/img/screenshot.png)
 
 # ES6 Modules
 

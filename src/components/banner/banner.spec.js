@@ -1,14 +1,14 @@
 /**
- * Header
- * @file header.spec.js
+ * Banner
+ * @file banner.spec.js
  */
 
 /*globals describe, it, browser, expect*/
 
-describe('header', function () {
+describe('banner', function () {
     'use strict';
     
-    var name = 'header';
+    var name = 'banner';
 
     it('should look the same', function (done) {
         browser
