@@ -12,6 +12,12 @@ var autoprefixer = require('gulp-autoprefixer'),
     rename = require('gulp-rename'),
     sass = require('gulp-sass');
 
+gulp.task('compile.assets', function () {
+    'use strict';
+    return gulp.src(global.paths.src + global.paths.assets)
+        .pipe(connect.reload());
+});
+
 gulp.task('compile.css', function () {
     'use strict';
     return gulp.src(global.paths.src + global.paths.rootSCSS)

@@ -24,7 +24,7 @@ gulp.task('optimise.assets', ['clean'], function () {
         });
 });
 
-gulp.task('optimise.css', ['clean', 'compile.css'], function () {
+gulp.task('optimise.css', ['clean'], function () {
     'use strict';
     return gulp.src(global.paths.src + global.paths.rootCSS)
         .pipe(minifyCss())
@@ -35,22 +35,22 @@ gulp.task('optimise.css', ['clean', 'compile.css'], function () {
         });
 });
 
-gulp.task('optimise.html', ['clean', 'compile.html'], function () {
+gulp.task('optimise.html', ['clean'], function () {
     'use strict';
     return gulp.src(global.paths.src + global.paths.html)
         .pipe(htmlReplace({
             'css': {
-                src: [['{%', 'web/components/all.min.css', '%}']],
-                tpl: '<link rel="stylesheet" href="%s static \'%s\' %s" />'
+                src: ['components/all.min.css'], // custom tags use [['{%', 'web/components/all.min.css', '%}']]
+                tpl: '<link rel="stylesheet" href="%s" />' // custom tags use '<link rel="stylesheet" href="%s static \'%s\' %s" />'
             },
             'js': {
-                src: [['{%', 'web/components/all.min.js', '%}']],
-                tpl: '<script src="%s static \'%s\' %s"></script>'
+                src: ['components/all.min.js'], // custom tags use [['{%', 'web/components/all.min.js', '%}']]
+                tpl: '<script src="%s"></script>' // custom tags use  '<script src="%s static \'%s\' %s"></script>'
             }
         }))
         .pipe(minifyHtml({
-            collapseWhitespace: true,
-            ignoreCustomFragments: [ (/\{\%[^\%]*?\%\}/g) ]
+            collapseWhitespace: true
+//            ignoreCustomFragments: [ (/\{\%[^\%]*?\%\}/g) ] // custom tags use
         }))
         .pipe(gulp.dest(global.paths.www))
         .on('error', function (error) {
@@ -58,7 +58,7 @@ gulp.task('optimise.html', ['clean', 'compile.html'], function () {
         });
 });
 
-gulp.task('optimise.img', ['clean', 'compile.img'], function () {
+gulp.task('optimise.img', ['clean'], function () {
     'use strict';
     return gulp.src(global.paths.src + global.paths.img)
         .pipe(imagemin({
@@ -72,9 +72,8 @@ gulp.task('optimise.img', ['clean', 'compile.img'], function () {
         });
 });
 
-gulp.task('optimise.js', ['clean', 'compile.js'], function () {
+gulp.task('optimise.js', ['clean'], function () {
     'use strict';
-
     return gulp.src(global.paths.src  + global.paths.rootJS)
         .pipe(jspm({selfExecutingBundle: true}))
         .pipe(uglify())
