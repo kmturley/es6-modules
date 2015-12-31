@@ -6,154 +6,123 @@
 .header {
     @extend .shadow;
     background-color: $color-white;
-    box-sizing: border-box;
     position: fixed;
-    top: 0;
     width: 100%;
-    z-index: 2;
-
-    .logo {
-        float: left;
-        font-size: 1.5em;
-        font-weight: bold;
-        line-height: 2rem;
-        padding: .5rem 1rem;
-        text-decoration: none;
-    }
-
-    ul,
-    li {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-
-    ul {
-        @include tablet {
-            float: right;
-        }
-    }
-
-    li {
-        @include tablet {
-            float: left;
-        }
-
-        a {
-            border-right: 1px solid $color-grey-lighter;
-            display: block;
-            padding: 1em;
-            text-decoration: none;
-
-            @include tablet {
-                line-height: 2rem;
-                padding: .5rem 1rem;
-            }
-
-            &:hover {
-                background-color: $color-grey-lighter;
-            }
-        }
-    }
-
-    .btn {
-        .menu {
-            @extend %transition;
-            border-top: 1px solid $color-grey-lighter;
-            height: 0;
-            overflow: hidden;
-            transition-property: height;
-
-            @include tablet {
-                border-top: 0;
-                height: auto;
-            }
-        }
-
-        &:hover {
-            .menu {
-                height: 224px;
-                @include tablet {
-                    height: auto;
-                }
-            }
-        }
-    }
-
-    .btn-link {
-        float: right;
-        font-size: 1.5em;
-        line-height: 2rem;
-        padding: .5rem 1rem;
-
-        @include tablet {
-            display: none;
-        }
-    }
-
-    .menu {
-        clear: both;
-    }
-    
-    .navicon-button {
-        display: inline-block;
-        float: right;
-        padding: 23px 15px;
-        position: relative;
-        .navicon:before,
-        .navicon:after {
-            @extend %transition;
-        }
-        @include tablet {
-            display: none;
-        }
-    }
-    .navicon {
-        @extend %transition;
-        display: block;
-        background: $color-grey;
-        height: 2px;
-        position: relative;
-        width: 18px;
-        transition-property: background;
-        &:before, &:after {
-            @extend %transition;
-            background: $color-grey;
-            display: block;
-            content: "";
-            height: 100%;
-            width: 100%;
-            position: absolute;
-            transition-property: transform;
-        }
-        &:before {
-            top: 5px;
-        }
-        &:after {
-            top: -5px;
-        }
-    }
+    z-index: 3;
 }
 
-.btn:hover {
-    .navicon {
-        background: transparent;
-        &:before {
-            transform: rotate(-45deg);
-        }
-        &:after {
-            transform: rotate(45deg);
-        }
-    }
-    .menu {
-        height: 204px;
-        @include tablet {
-            height: auto;
-        }
-    }
+.header ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+    background-color: #fff;
 }
 
-.btn:hover:not(.steps) .navicon:before,
-.btn:hover:not(.steps) .navicon:after {
+.header li a {
+    border-right: 1px solid $color-grey-lighter;
+    display: block;
+    padding: 1em;
+    text-decoration: none;
+}
+
+.header li a:hover {
+    background-color: #f4f4f4;
+}
+
+.header .logo {
+    display: block;
+    float: left;
+    font-size: 1.5em;
+    font-weight: bold;
+    line-height: 2rem;
+    padding: .5rem 1rem;
+    text-decoration: none;
+}
+
+.header .menu {
+    clear: both;
+    max-height: 0;
+    transition: max-height .2s ease-out;
+}
+
+.header .menu-icon {
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+    padding: 1.5rem 1rem;
+    position: relative;
+    user-select: none;
+}
+
+.header .menu-icon .navicon {
+    background: #333;
+    display: block;
+    height: 2px;
+    position: relative;
+    transition: background .2s ease-out;
+    width: 18px;
+}
+
+.header .menu-icon .navicon:before,
+.header .menu-icon .navicon:after {
+    background: #333;
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    transition: all .2s ease-out;
+    width: 100%;
+}
+
+.header .menu-icon .navicon:before {
+    top: 5px;
+}
+
+.header .menu-icon .navicon:after {
+    top: -5px;
+}
+
+
+.header .menu-btn {
+    display: none;
+}
+
+.header .menu-btn:checked ~ .menu {
+    max-height: 240px;
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon {
+    background: transparent;
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon:before {
+    transform: rotate(-45deg);
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon:after {
+    transform: rotate(45deg);
+}
+
+.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
     top: 0;
+}
+
+@media (min-width: 48em) {
+    .header li {
+        float: left;
+    }
+    .header li a {
+        line-height: 2rem;
+        padding: .5rem 1rem;
+    }
+    .header .menu {
+        clear: none;
+        float: right;
+        max-height: none;
+    }
+    .header .menu-icon {
+        display: none;
+    }
 }

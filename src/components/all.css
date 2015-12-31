@@ -145,12 +145,6 @@ body {
 
 a,
 .shadow-animate,
-.header .btn .menu,
-.header .navicon-button .navicon:before,
-.header .navicon-button .navicon:after,
-.header .navicon,
-.header .navicon:before,
-.header .navicon:after,
 .tabs label {
 	transition: .2s ease-out;
 }
@@ -233,27 +227,17 @@ a,
 
 .header {
 	background-color: #fff;
-	box-sizing: border-box;
 	position: fixed;
-	top: 0;
 	width: 100%;
-	z-index: 2;
+	z-index: 3;
 }
 
-.header .logo {
-	float: left;
-	font-size: 1.5em;
-	font-weight: bold;
-	line-height: 2rem;
-	padding: .5rem 1rem;
-	text-decoration: none;
-}
-
-.header ul,
-.header li {
-	list-style: none;
+.header ul {
 	margin: 0;
 	padding: 0;
+	list-style: none;
+	overflow: hidden;
+	background-color: #fff;
 }
 
 .header li a {
@@ -264,88 +248,89 @@ a,
 }
 
 .header li a:hover {
-	background-color: #f2f2f2;
+	background-color: #f4f4f4;
 }
 
-.header .btn .menu {
-	border-top: 1px solid #f2f2f2;
-	height: 0;
-	overflow: hidden;
-	transition-property: height;
-}
-
-.header .btn:hover .menu {
-	height: 224px;
-}
-
-.header .btn-link {
-	float: right;
+.header .logo {
+	display: block;
+	float: left;
 	font-size: 1.5em;
+	font-weight: bold;
 	line-height: 2rem;
 	padding: .5rem 1rem;
+	text-decoration: none;
 }
 
 .header .menu {
 	clear: both;
+	max-height: 0;
+	transition: max-height .2s ease-out;
 }
 
-.header .navicon-button {
+.header .menu-icon {
+	cursor: pointer;
 	display: inline-block;
 	float: right;
-	padding: 23px 15px;
+	padding: 1.5rem 1rem;
 	position: relative;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
 }
 
-.header .navicon {
+.header .menu-icon .navicon {
+	background: #333;
 	display: block;
-	background: gray;
 	height: 2px;
 	position: relative;
+	transition: background .2s ease-out;
 	width: 18px;
-	transition-property: background;
 }
 
-.header .navicon:before,
-.header .navicon:after {
-	background: gray;
+.header .menu-icon .navicon:before,
+.header .menu-icon .navicon:after {
+	background: #333;
+	content: '';
 	display: block;
-	content: "";
 	height: 100%;
-	width: 100%;
 	position: absolute;
-	transition-property: -webkit-transform;
-	transition-property: transform;
-	transition-property: transform, -webkit-transform;
+	transition: all .2s ease-out;
+	width: 100%;
 }
 
-.header .navicon:before {
+.header .menu-icon .navicon:before {
 	top: 5px;
 }
 
-.header .navicon:after {
+.header .menu-icon .navicon:after {
 	top: -5px;
 }
 
-.btn:hover .navicon {
+.header .menu-btn {
+	display: none;
+}
+
+.header .menu-btn:checked ~ .menu {
+	max-height: 240px;
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon {
 	background: transparent;
 }
 
-.btn:hover .navicon:before {
+.header .menu-btn:checked ~ .menu-icon .navicon:before {
 	-webkit-transform: rotate(-45deg);
 	        transform: rotate(-45deg);
 }
 
-.btn:hover .navicon:after {
+.header .menu-btn:checked ~ .menu-icon .navicon:after {
 	-webkit-transform: rotate(45deg);
 	        transform: rotate(45deg);
 }
 
-.btn:hover .menu {
-	height: 204px;
-}
-
-.btn:hover:not(.steps) .navicon:before,
-.btn:hover:not(.steps) .navicon:after {
+.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
 	top: 0;
 }
 
@@ -395,6 +380,29 @@ a,
 #tab2:checked ~ .tabs-wrap #tab2content,
 #tab3:checked ~ .tabs-wrap #tab3content {
 	display: block;
+}
+
+@media (min-width: 48em) {
+
+.header li {
+	float: left;
+}
+
+.header li a {
+	line-height: 2rem;
+	padding: .5rem 1rem;
+}
+
+.header .menu {
+	clear: none;
+	float: right;
+	max-height: none;
+}
+
+.header .menu-icon {
+	display: none;
+}
+
 }
 
 @media (min-width: 768px) {
@@ -504,40 +512,6 @@ a,
 
 .h4of5 {
 	height: 80%;
-}
-
-.header ul {
-	float: right;
-}
-
-.header li {
-	float: left;
-}
-
-.header li a {
-	line-height: 2rem;
-	padding: .5rem 1rem;
-}
-
-.header .btn .menu {
-	border-top: 0;
-	height: auto;
-}
-
-.header .btn:hover .menu {
-	height: auto;
-}
-
-.header .btn-link {
-	display: none;
-}
-
-.header .navicon-button {
-	display: none;
-}
-
-.btn:hover .menu {
-	height: auto;
 }
 
 }
