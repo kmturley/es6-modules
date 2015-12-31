@@ -6,13 +6,31 @@
 .header {
     @extend .shadow;
     background-color: $color-white;
-    box-sizing: border-box;
     position: fixed;
-    top: 0;
     width: 100%;
-    z-index: 2;
+    z-index: 3;
+    
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        overflow: hidden;
+        background-color: $color-white;
+    }
+
+    li a {
+        border-right: 1px solid $color-grey-lighter;
+        display: block;
+        padding: 1em;
+        text-decoration: none;
+    }
+
+    li a:hover {
+        background-color: #f4f4f4;
+    }
 
     .logo {
+        display: block;
         float: left;
         font-size: 1.5em;
         font-weight: bold;
@@ -21,139 +39,90 @@
         text-decoration: none;
     }
 
-    ul,
-    li {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-
-    ul {
-        @include tablet {
-            float: right;
-        }
-    }
-
-    li {
-        @include tablet {
-            float: left;
-        }
-
-        a {
-            border-right: 1px solid $color-grey-lighter;
-            display: block;
-            padding: 1em;
-            text-decoration: none;
-
-            @include tablet {
-                line-height: 2rem;
-                padding: .5rem 1rem;
-            }
-
-            &:hover {
-                background-color: $color-grey-lighter;
-            }
-        }
-    }
-
-    .btn {
-        .menu {
-            @extend %transition;
-            border-top: 1px solid $color-grey-lighter;
-            height: 0;
-            overflow: hidden;
-            transition-property: height;
-
-            @include tablet {
-                border-top: 0;
-                height: auto;
-            }
-        }
-
-        &:hover {
-            .menu {
-                height: 224px;
-                @include tablet {
-                    height: auto;
-                }
-            }
-        }
-    }
-
-    .btn-link {
-        float: right;
-        font-size: 1.5em;
-        line-height: 2rem;
-        padding: .5rem 1rem;
-
-        @include tablet {
-            display: none;
-        }
-    }
-
     .menu {
         clear: both;
+        max-height: 0;
+        transition: max-height .2s ease-out;
     }
-    
-    .navicon-button {
+
+    .menu-icon {
+        cursor: pointer;
         display: inline-block;
         float: right;
-        padding: 23px 15px;
+        padding: 1.5rem 1rem;
         position: relative;
-        .navicon:before,
-        .navicon:after {
-            @extend %transition;
-        }
-        @include tablet {
-            display: none;
-        }
+        user-select: none;
     }
-    .navicon {
-        @extend %transition;
+
+    .menu-icon .navicon {
+        background: #333;
         display: block;
-        background: $color-grey;
         height: 2px;
         position: relative;
+        transition: background .2s ease-out;
         width: 18px;
-        transition-property: background;
-        &:before, &:after {
-            @extend %transition;
-            background: $color-grey;
-            display: block;
-            content: "";
-            height: 100%;
-            width: 100%;
-            position: absolute;
-            transition-property: transform;
-        }
-        &:before {
-            top: 5px;
-        }
-        &:after {
-            top: -5px;
-        }
     }
-}
 
-.btn:hover {
-    .navicon {
+    .menu-icon .navicon:before,
+    .menu-icon .navicon:after {
+        background: #333;
+        content: '';
+        display: block;
+        height: 100%;
+        position: absolute;
+        transition: all .2s ease-out;
+        width: 100%;
+    }
+
+    .menu-icon .navicon:before {
+        top: 5px;
+    }
+
+    .menu-icon .navicon:after {
+        top: -5px;
+    }
+
+
+    .menu-btn {
+        display: none;
+    }
+
+    .menu-btn:checked ~ .menu {
+        max-height: 240px;
+    }
+
+    .menu-btn:checked ~ .menu-icon .navicon {
         background: transparent;
-        &:before {
-            transform: rotate(-45deg);
-        }
-        &:after {
-            transform: rotate(45deg);
-        }
     }
-    .menu {
-        height: 204px;
-        @include tablet {
-            height: auto;
-        }
+
+    .menu-btn:checked ~ .menu-icon .navicon:before {
+        transform: rotate(-45deg);
+    }
+
+    .menu-btn:checked ~ .menu-icon .navicon:after {
+        transform: rotate(45deg);
+    }
+
+    .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+    .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+        top: 0;
     }
 }
 
-.btn:hover:not(.steps) .navicon:before,
-.btn:hover:not(.steps) .navicon:after {
-    top: 0;
+@media (min-width: 48em) {
+    .header li {
+        float: left;
+    }
+    .header li a {
+        line-height: 2rem;
+        padding: .5rem 1rem;
+    }
+    .header .menu {
+        clear: none;
+        float: right;
+        max-height: none;
+    }
+    .header .menu-icon {
+        display: none;
+    }
 }
