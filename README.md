@@ -1,4 +1,5 @@
 ![ES6 Modules screenshot](https://kmturley.github.io/es6-modules/src/img/screenshot.png)
+![Webdrivercss screenshot](https://kmturley.github.io/es6-modules/src/img/screenshot2.png)
 
 # ES6 Modules
 
@@ -7,8 +8,8 @@ Base project template for ES6 modules including:
 * Server with live reload of static files
 * Compile tasks to run ES6 JavaScript and SASS CSS in the browser
 * Optimise tasks to create concatenated and minified ES5 versions for production environments
-* Test tasks to automate unit tests and functional tests
-* Document tasks to automatically create documentation from the code
+* Test tasks to automate unit tests and functional tests with screenshots and diff
+* Document tasks to automatically create documentation from comments within the code
 
 ## Installation
 
@@ -58,7 +59,7 @@ After installation has completed you will have access to the following features.
 * [gulp-html-replace](https://github.com/VFK/gulp-html-replace) - Updates html development paths with production paths
 * [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin) - Minifies images to create smaller files
 * [gulp-minify-css](https://github.com/murphydanger/gulp-minify-css) - Minifies the css into a smaller file
-* [gulp-minify-html](https://github.com/murphydanger/gulp-minify-html) - Minifies html code into a smaller file
+* [gulp-htmlmin](https://github.com/jonschlinkert/gulp-htmlmin) - Minifies html code into a smaller file
 * [gulp-uglify](https://github.com/terinjokes/gulp-uglify) - Minifies javascript
 * [imagemin-pngquant](https://github.com/imagemin/imagemin-pngquant) - Plugin for imagemin to minify png images
 
