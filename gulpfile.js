@@ -29,28 +29,29 @@ requireDir('gulp');
 
 gulp.task('connect', function () {
     'use strict';
-    connect.server({
+    return connect.server({
         root: global.paths.server,
         livereload: true,
         port: 8181
     });
 });
 
-gulp.task('clean', function () {
+gulp.task('clean', function (cb) {
     'use strict';
-    del([global.paths.www]);
+    return del([global.paths.www]);
 });
 
 gulp.task('watch', function () {
     'use strict';
-    gulp.watch([global.paths.src + global.paths.scss], ['optimise.css']);
-    gulp.watch([global.paths.src + global.paths.html], ['optimise.html']);
-    gulp.watch([global.paths.src + global.paths.img], ['optimise.img']);
-    gulp.watch([global.paths.src + global.paths.js], ['optimise.js']);
+    return gulp
+        .watch([global.paths.src + global.paths.scss], ['optimise.css'])
+        .watch([global.paths.src + global.paths.html], ['optimise.html'])
+        .watch([global.paths.src + global.paths.img], ['optimise.img'])
+        .watch([global.paths.src + global.paths.js], ['optimise.js']);
 });
 
 gulp.task('default', ['connect', 'compile', 'watch']);
 gulp.task('compile', ['compile.css', 'compile.html', 'compile.img', 'compile.js']);
-gulp.task('optimise', ['clean', 'optimise.assets', 'optimise.css', 'optimise.html', 'optimise.img', 'optimise.js']);
+gulp.task('optimise', ['optimise.assets', 'optimise.css', 'optimise.html', 'optimise.img', 'optimise.js']);
 gulp.task('test', ['test.run']);
 gulp.task('document', ['document.css', 'document.js']);

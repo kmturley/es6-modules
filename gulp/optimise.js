@@ -10,12 +10,12 @@ var htmlReplace = require('gulp-html-replace'),
     jspm = require('gulp-jspm'),
     gulp = require('gulp'),
     minifyCss = require('gulp-minify-css'),
-    minifyHtml = require('gulp-minify-html'),
+    minifyHtml = require('gulp-htmlmin'),
     pngquant = require('imagemin-pngquant'),
     rename = require('gulp-rename'),
     uglify = require('gulp-uglify');
 
-gulp.task('optimise.assets', function () {
+gulp.task('optimise.assets', ['clean'], function () {
     'use strict';
     return gulp.src([global.paths.src + global.paths.assets + '/**/*'])
         .pipe(gulp.dest(global.paths.www + global.paths.assets))
@@ -24,7 +24,7 @@ gulp.task('optimise.assets', function () {
         });
 });
 
-gulp.task('optimise.css', ['compile.css'], function () {
+gulp.task('optimise.css', ['clean', 'compile.css'], function () {
     'use strict';
     return gulp.src(global.paths.src + global.paths.rootCSS)
         .pipe(minifyCss())
@@ -35,7 +35,7 @@ gulp.task('optimise.css', ['compile.css'], function () {
         });
 });
 
-gulp.task('optimise.html', ['compile.html'], function () {
+gulp.task('optimise.html', ['clean', 'compile.html'], function () {
     'use strict';
     return gulp.src(global.paths.src + global.paths.html)
         .pipe(htmlReplace({
@@ -48,14 +48,17 @@ gulp.task('optimise.html', ['compile.html'], function () {
                 tpl: '<script src="%s static \'%s\' %s"></script>'
             }
         }))
-        .pipe(minifyHtml())
+        .pipe(minifyHtml({
+            collapseWhitespace: true,
+            ignoreCustomFragments: [ (/\{\%[^\%]*?\%\}/g) ]
+        }))
         .pipe(gulp.dest(global.paths.www))
         .on('error', function (error) {
             console.error('html error: ' + error);
         });
 });
 
-gulp.task('optimise.img', ['compile.img'], function () {
+gulp.task('optimise.img', ['clean', 'compile.img'], function () {
     'use strict';
     return gulp.src(global.paths.src + global.paths.img)
         .pipe(imagemin({
@@ -69,7 +72,7 @@ gulp.task('optimise.img', ['compile.img'], function () {
         });
 });
 
-gulp.task('optimise.js', ['compile.js'], function () {
+gulp.task('optimise.js', ['clean', 'compile.js'], function () {
     'use strict';
 
     return gulp.src(global.paths.src  + global.paths.rootJS)
