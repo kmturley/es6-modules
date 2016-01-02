@@ -1,7 +1,20 @@
 ////
-/// @group mixins
+/// Mixins
+/// @group global
+/// @access public
 /// @author kmturley
 ////
+
+/// Mobile width
+/// @content included at this width
+/// @example 
+///
+/// .item {
+///     display: none;
+///     @include mobile {
+///         display: block;
+///     }
+/// }
 
 @mixin mobile {
     @media (min-width: #{$screen-xs}) {
@@ -9,17 +22,50 @@
     }
 }
 
+/// Tablet width
+/// @content included at this width
+/// @example 
+///
+/// .item {
+///     display: none;
+///     @include tablet {
+///         display: block;
+///     }
+/// }
+
 @mixin tablet {
     @media (min-width: #{$screen-sm}) {
         @content;
     }
 }
 
+/// Desktop width
+/// @content included at this width
+/// @example 
+///
+/// .item {
+///     display: none;
+///     @include desktop {
+///         display: block;
+///     }
+/// }
+
 @mixin desktop {
     @media (min-width: #{$screen-md}) {
         @content;
     }
 }
+
+/// Monitor width
+/// @content included at this width
+/// @example 
+///
+/// .item {
+///     display: none;
+///     @include monitor {
+///         display: block;
+///     }
+/// }
 
 @mixin monitor {
     @media (min-width: #{$screen-lg}) {
