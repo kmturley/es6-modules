@@ -1,7 +1,17 @@
 ////
-/// @group utils
+/// Utils
+/// @group global
+/// @access public
 /// @author kmturley
 ////
+
+/// Last margin
+/// Remove margin bottom from this element
+/// @example 
+///
+/// .item {
+///     @extend %last-margin;
+/// }
 
 %last-margin {
     > *:last-child,
@@ -11,6 +21,14 @@
         margin-bottom: 0;
     }
 }
+
+/// Transition
+/// Use a shared transition for effects
+/// @example 
+///
+/// .item {
+///     @extend %last-margin;
+/// }
 
 %transition {
     transition: .2s ease-out;
