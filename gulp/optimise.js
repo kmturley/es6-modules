@@ -49,8 +49,8 @@ gulp.task('optimise.html', ['clean'], function () {
             }
         }))
         .pipe(minifyHtml({
-            collapseWhitespace: true
-//            ignoreCustomFragments: [ (/\{\%[^\%]*?\%\}/g) ] // custom tags use
+            collapseWhitespace: true,
+            //ignoreCustomFragments: [ (/\{\%[^\%]\s*?\%\}/g) ] // custom tags use
         }))
         .pipe(gulp.dest(global.paths.www))
         .on('error', function (error) {
