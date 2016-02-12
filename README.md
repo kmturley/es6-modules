@@ -60,7 +60,7 @@ After installation has completed you will have access to the following features.
 * [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin) - Minifies images to create smaller files
 * [gulp-minify-css](https://github.com/murphydanger/gulp-minify-css) - Minifies the css into a smaller file
 * [gulp-htmlmin](https://github.com/jonschlinkert/gulp-htmlmin) - Minifies html code into a smaller file
-* [gulp-uglify](https://github.com/terinjokes/gulp-uglify) - Minifies javascript
+* [gulp-jspm](https://github.com/brillout/gulp-jspm) - Converts ES6 to ES5 javascript and minifies the file
 * [imagemin-pngquant](https://github.com/imagemin/imagemin-pngquant) - Plugin for imagemin to minify png images
 
 [http://localhost:8080/www/](http://localhost:8080/www/)
